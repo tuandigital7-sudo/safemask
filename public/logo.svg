@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0E141B"/>
+      <stop offset="100%" stop-color="#07090C"/>
+    </linearGradient>
+    <linearGradient id="shieldGrad" x1="120" y1="64" x2="392" y2="448" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#34D399"/>
+      <stop offset="50%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+    <linearGradient id="innerShield" x1="256" y1="100" x2="256" y2="412" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#131B24"/>
+      <stop offset="100%" stop-color="#090D12"/>
+    </linearGradient>
+    <linearGradient id="lockGrad" x1="200" y1="180" x2="312" y2="332" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00E676"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)"/>
+  <circle cx="256" cy="240" r="190" fill="#10B981" fill-opacity="0.08"/>
+  <!-- Outer Shield -->
+  <path d="M256 64L404 118V248C404 344 340 416 256 448C172 416 108 344 108 248V118L256 64Z" fill="url(#shieldGrad)"/>
+  <!-- Inner Dark Shield -->
+  <path d="M256 88L382 134V246C382 328 328 390 256 420C184 390 130 328 130 246V134L256 88Z" fill="url(#innerShield)"/>
+  <!-- Mask / Redaction Bar Accent -->
+  <rect x="176" y="164" width="160" height="14" rx="7" fill="#10B981" fill-opacity="0.22"/>
+  <!-- Security Lock -->
+  <path d="M214 236V208C214 184.8 232.8 166 256 166C279.2 166 298 184.8 298 208V236" stroke="url(#lockGrad)" stroke-width="20" stroke-linecap="round"/>
+  <rect x="188" y="232" width="136" height="104" rx="24" fill="url(#lockGrad)"/>
+  <!-- Keyhole -->
+  <circle cx="256" cy="274" r="14" fill="#080A0D"/>
+  <rect x="249" y="280" width="14" height="28" rx="7" fill="#080A0D"/>
+</svg>
