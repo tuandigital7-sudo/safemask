@@ -186,63 +186,64 @@ export const LandingApp: React.FC = () => {
                   : 'Score photo privacy (0–100), permanently redact photos & PDFs, strip hidden GPS/EXIF, and sanitize text before ChatGPT.'}
               </p>
 
-              {/* 3 OFFICIAL PRO PLATFORM BUTTONS RIGHT IN HERO */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                {/* 1. Web App (/web) */}
+              {/* 3 HIGH-CONTRAST GLOWING PLATFORM BUTTONS RIGHT IN HERO */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-3">
+                {/* 1. Web App (/web) — Brilliant Neon Emerald */}
                 <a
                   href="/web/"
-                  className="group flex items-center gap-3.5 px-5 py-4 rounded-2xl bg-emeraldbrand hover:bg-emeraldbrand-soft text-obsidian shadow-[0_0_32px_rgba(16,185,129,0.45)] transition active:scale-[0.98]"
+                  className="group flex items-center gap-3.5 px-5 py-4 rounded-2xl bg-gradient-to-r from-[#00E676] to-[#10B981] hover:brightness-110 text-obsidian shadow-[0_0_36px_rgba(0,230,118,0.55)] ring-2 ring-[#34D399]/70 transition active:scale-[0.98]"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-obsidian/15 flex items-center justify-center shrink-0">
-                    <Globe className="w-6 h-6 text-obsidian" />
+                  <div className="w-11 h-11 rounded-xl bg-obsidian/15 flex items-center justify-center shrink-0">
+                    <Globe className="w-6 h-6 text-obsidian" strokeWidth={2.4} />
                   </div>
                   <div className="text-left min-w-0">
-                    <div className="text-[10px] font-extrabold uppercase tracking-wider opacity-80">
+                    <div className="text-[10px] font-black uppercase tracking-wider text-obsidian/80">
                       {isVi ? 'Dùng Ngay • PWA' : 'Instant • PWA'}
                     </div>
-                    <div className="text-sm font-black leading-tight truncate">
-                      Web App (/web)
+                    <div className="text-base font-black leading-tight truncate">
+                      Web App
                     </div>
                   </div>
-                  <ArrowRight className="w-4 h-4 ml-auto shrink-0 group-hover:translate-x-0.5 transition-transform" />
+                  <ArrowRight className="w-5 h-5 ml-auto shrink-0 group-hover:translate-x-1 transition-transform" />
                 </a>
 
-                {/* 2. Apple App Store */}
+                {/* 2. Apple App Store — Iconic High-Contrast Apple White */}
                 <a
                   href="#download-channels"
-                  className="group flex items-center gap-3.5 px-5 py-4 rounded-2xl bg-obsidian/90 hover:bg-surface border border-white/25 hover:border-emeraldbrand text-white backdrop-blur-md transition active:scale-[0.98]"
+                  className="group flex items-center gap-3.5 px-5 py-4 rounded-2xl bg-white hover:bg-slate-100 text-obsidian shadow-[0_0_30px_rgba(255,255,255,0.3)] ring-2 ring-white/80 transition active:scale-[0.98]"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
-                    <AppleMark className="w-6 h-6 text-white" />
+                  <div className="w-11 h-11 rounded-xl bg-obsidian/10 flex items-center justify-center shrink-0">
+                    <AppleMark className="w-6 h-6 text-obsidian" />
                   </div>
                   <div className="text-left min-w-0">
-                    <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                    <div className="text-[10px] font-extrabold uppercase tracking-wider text-slate-600">
                       {isVi ? 'iPhone & iPad' : 'Download on the'}
                     </div>
-                    <div className="text-sm font-black leading-tight truncate">
+                    <div className="text-base font-black leading-tight truncate">
                       App Store
                     </div>
                   </div>
+                  <ArrowRight className="w-5 h-5 ml-auto text-obsidian/70 shrink-0 group-hover:translate-x-1 transition-transform" />
                 </a>
 
-                {/* 3. Android APK Direct */}
+                {/* 3. Android APK Direct — Vivid Android Emerald-Teal Glow */}
                 <a
                   href="/downloads/safemask-latest.apk"
                   download
-                  className="group flex items-center gap-3.5 px-5 py-4 rounded-2xl bg-obsidian/90 hover:bg-surface border border-emeraldbrand/55 hover:border-emeraldbrand-bright text-white backdrop-blur-md transition active:scale-[0.98]"
+                  className="group flex items-center gap-3.5 px-5 py-4 rounded-2xl bg-gradient-to-r from-[#064E3B] to-[#047857] hover:from-[#047857] hover:to-[#059669] border-2 border-[#00E676] text-white shadow-[0_0_32px_rgba(16,185,129,0.45)] transition active:scale-[0.98]"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-emeraldbrand/20 flex items-center justify-center shrink-0">
-                    <AndroidMark className="w-6 h-6 text-emeraldbrand-bright" />
+                  <div className="w-11 h-11 rounded-xl bg-[#00E676]/20 flex items-center justify-center shrink-0">
+                    <AndroidMark className="w-6 h-6 text-[#00E676]" />
                   </div>
                   <div className="text-left min-w-0">
-                    <div className="text-[10px] font-bold uppercase tracking-wider text-emeraldbrand-soft">
+                    <div className="text-[10px] font-extrabold uppercase tracking-wider text-[#6EE7B7]">
                       APK • v1.0.0 • 6.6 MB
                     </div>
-                    <div className="text-sm font-black leading-tight truncate">
+                    <div className="text-base font-black leading-tight truncate">
                       {isVi ? 'Tải Android APK' : 'Android APK'}
                     </div>
                   </div>
-                  <Download className="w-4 h-4 ml-auto text-emeraldbrand-bright shrink-0" />
+                  <Download className="w-5 h-5 ml-auto text-[#00E676] shrink-0" />
                 </a>
               </div>
             </div>
@@ -351,7 +352,7 @@ export const LandingApp: React.FC = () => {
                   </li>
                 </ul>
               </div>
-              <div className="w-full py-3.5 rounded-2xl bg-elevated border border-white/15 text-slate-200 font-bold text-sm flex items-center justify-center gap-2">
+              <div className="w-full py-3.5 rounded-2xl bg-white text-obsidian font-extrabold text-sm flex items-center justify-center gap-2 shadow-[0_0_24px_rgba(255,255,255,0.2)]">
                 <AppleMark className="w-4 h-4" />
                 <span>{isVi ? 'App Store • Chuẩn Bị Ra Mắt' : 'App Store • Releasing Soon'}</span>
               </div>
@@ -392,9 +393,9 @@ export const LandingApp: React.FC = () => {
               <a
                 href="/downloads/safemask-latest.apk"
                 download
-                className="w-full py-3.5 rounded-2xl bg-elevated hover:bg-emeraldbrand hover:text-obsidian border border-emeraldbrand/60 text-emeraldbrand-bright font-extrabold text-sm flex items-center justify-center gap-2 transition"
+                className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-[#064E3B] to-[#047857] hover:brightness-110 border-2 border-[#00E676] text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-[0_0_24px_rgba(16,185,129,0.35)] transition"
               >
-                <Download className="w-4 h-4" />
+                <Download className="w-4 h-4 text-[#00E676]" />
                 <span>{isVi ? 'Tải File APK Ngay' : 'Download Android APK'}</span>
               </a>
             </div>
