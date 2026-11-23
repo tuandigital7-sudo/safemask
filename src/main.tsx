@@ -11,7 +11,7 @@ function shouldLaunchMobileApp(): boolean {
   if (typeof window === 'undefined') return true;
 
   const path = window.location.pathname.toLowerCase();
-  if (path.endsWith('/app.html') || path.startsWith('/app')) return true;
+  if (path.startsWith('/web') || path.startsWith('/app')) return true;
 
   // Installed Standalone PWA opens directly into the Mobile App (never bounces to homepage)
   const isStandalone =

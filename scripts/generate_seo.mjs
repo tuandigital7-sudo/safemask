@@ -160,7 +160,7 @@ function pageShell({ title, description, canonical, body, jsonLd }) {
         <img src="/logo.svg" width="32" height="32" alt="SafeMask" />
         <span>SafeMask</span>
       </a>
-      <a class="btn" href="/app.html">Launch Web App →</a>
+      <a class="btn" href="/web/">Launch Web App →</a>
     </header>
     ${body}
     <footer>
@@ -209,7 +209,7 @@ for (const g of GUIDES) {
           <h2 style="margin-top:0">Try SafeMask Free on All 3 Platforms</h2>
           <p style="color:#94A3B8;font-size:14px">Zero cloud uploads. No account required. Core processing runs locally on your device.</p>
           <div class="cta-row">
-            <a class="btn" href="/app.html">Launch Web App (PWA)</a>
+            <a class="btn" href="/web/">Launch Web App (PWA)</a>
             <a class="btn-outline" href="/#download-channels">App Store (iOS)</a>
             <a class="btn-outline" href="/downloads/safemask-latest.apk" download>Download Android APK</a>
           </div>
@@ -302,7 +302,7 @@ fs.writeFileSync(
 
 const urls = [
   { loc: `${DOMAIN}/`, priority: '1.0' },
-  { loc: `${DOMAIN}/app.html`, priority: '0.95' },
+  { loc: `${DOMAIN}/web/`, priority: '0.95' },
   { loc: `${DOMAIN}/privacy/`, priority: '0.6' },
   { loc: `${DOMAIN}/terms/`, priority: '0.6' },
   { loc: `${DOMAIN}/support/`, priority: '0.6' },

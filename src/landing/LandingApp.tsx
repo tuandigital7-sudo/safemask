@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import {
+  ArrowRight,
   CheckCircle2,
   Download,
-  FileText,
   Globe,
-  Image as ImageIcon,
   Lock,
-  MapPinOff,
   ShieldCheck,
   Smartphone,
-  Sparkles,
 } from 'lucide-react';
 import { SafeMaskLogo } from '../components/Logo';
 import type { Language } from '../types';
@@ -28,41 +25,36 @@ export const LandingApp: React.FC = () => {
   const [lang, setLang] = useState<Language>(initialLang);
   const isVi = lang === 'vi';
 
-  const features = [
+  const visualTools = [
     {
-      icon: ShieldCheck,
-      title: isVi ? 'Chấm Điểm Bảo Mật Ảnh (0–100) + 1-Chạm Sửa' : 'Photo Privacy Score (0–100) + 1-Tap Fix',
-      desc: isVi
-        ? 'Thả ảnh vào để chấm điểm an toàn 0–100 dựa trên GPS, EXIF & OCR cục bộ, sau đó 1 chạm sửa ngay lên 100/100.'
-        : 'Drop any photo to get an instant 0–100 Privacy Score across GPS, EXIF & local OCR, then 1-Tap Auto-Shield to 100/100.',
+      art: '/art/card-image.webp',
+      title: isVi ? 'Che Ảnh Vĩnh Viễn' : 'Image Shield',
+      desc: isVi ? 'Che đen, làm mờ, pixelate, cắt ảnh & đóng dấu' : 'Blackout, blur, pixelate, crop & watermark',
     },
     {
-      icon: ImageIcon,
-      title: isVi ? 'Image Shield – Che ảnh vĩnh viễn' : 'Image Shield – Permanent Redaction',
-      desc: isVi
-        ? 'Che đen, làm mờ, pixelate, cắt ảnh và đóng dấu xác minh. Khi xuất file, điểm ảnh gốc bên dưới bị ghi đè hoàn toàn.'
-        : 'Blackout, blur, pixelate, crop, and verification watermarks. Redactions are permanently burned into output pixels.',
+      art: '/art/card-ai.webp',
+      title: isVi ? 'Lọc Văn Bản AI' : 'AI Privacy Copy',
+      desc: isVi ? 'Ẩn SSN, SĐT, Email trước khi dán vào ChatGPT' : 'Mask SSN, phone & email before ChatGPT',
     },
     {
-      icon: Sparkles,
-      title: isVi ? 'AI Privacy Copy – Lọc văn bản trước khi gửi AI' : 'AI Privacy Copy – Sanitize Before AI',
-      desc: isVi
-        ? 'Tự động thay SĐT, Email, CCCD, STK thành [PHONE_1], [EMAIL_1], [ID_1] trong RAM phiên hiện tại.'
-        : 'Automatically replaces phones, emails, IDs, and bank accounts with safe tokens strictly in session memory.',
+      art: '/art/card-pdf.webp',
+      title: isVi ? 'Bảo Vệ PDF' : 'PDF Shield',
+      desc: isVi ? 'Xuất PDF dạng ảnh không thể khôi phục chữ gốc' : 'Permanent rasterized PDF redaction',
     },
     {
-      icon: FileText,
-      title: isVi ? 'PDF Shield – Bảo vệ tài liệu PDF' : 'PDF Shield – True Rasterized PDF',
-      desc: isVi
-        ? 'Xuất PDF dạng ảnh (rasterized) sau khi che để đảm bảo không ai có thể sao chép hay khôi phục lớp chữ gốc.'
-        : 'Exports flattened rasterized PDFs so original text underneath redacted boxes can never be extracted.',
+      art: '/art/card-ocr.webp',
+      title: isVi ? 'Quét OCR Cục Bộ' : 'Smart Redact OCR',
+      desc: isVi ? 'Tự gợi ý SĐT, Email, CCCD/ID ngay trên máy' : 'Auto-detect sensitive info on-device',
     },
     {
-      icon: MapPinOff,
-      title: isVi ? 'Metadata Cleaner – Xóa GPS & EXIF' : 'Metadata Cleaner – Strip GPS & EXIF',
-      desc: isVi
-        ? 'Kiểm tra tọa độ vị trí, tên thiết bị trong ảnh, xóa sạch và tự quét lại file xuất để xác minh.'
-        : 'Inspects hidden GPS coordinates and camera EXIF, strips them cleanly, and re-verifies the exported file.',
+      art: '/art/card-meta.webp',
+      title: isVi ? 'Xóa GPS & EXIF' : 'Metadata Cleaner',
+      desc: isVi ? 'Xóa tọa độ vị trí & xác minh 0 EXIF còn sót' : 'Strip GPS location & verify 0 EXIF left',
+    },
+    {
+      art: '/art/card-batch.webp',
+      title: isVi ? 'Xử Lý Hàng Loạt' : 'Batch Shield',
+      desc: isVi ? 'Bảo vệ & đóng dấu tới 30 ảnh cùng lúc' : 'Protect & watermark up to 30 photos',
     },
   ];
 
@@ -96,7 +88,7 @@ export const LandingApp: React.FC = () => {
         },
         {
           q: 'Tôi có thể dùng SafeMask trên nền tảng nào?',
-          a: 'Bạn có thể dùng ngay bản Web App (PWA cài ra màn hình chính), ứng dụng iOS trên App Store, hoặc tải trực tiếp file APK cho Android.',
+          a: 'Dùng ngay Web App tại safemask.tuandigital.vn/web, cài trên iPhone/iPad qua App Store, hoặc tải trực tiếp file Android APK ngay trên trang chủ này.',
         },
       ]
     : [
@@ -106,11 +98,11 @@ export const LandingApp: React.FC = () => {
         },
         {
           q: 'Can redacted areas be reversed or uncovered?',
-          a: 'No. SafeMask permanently burns redactions into output pixels and exports rasterized PDFs so underlying content is not recoverable.',
+          a: 'No. SafeMask permanently burns redactions into output pixels and exports rasterized PDFs so underlying content is never recoverable.',
         },
         {
           q: 'Which platforms does SafeMask support?',
-          a: 'Launch immediately via the standalone Web App (PWA), install on iOS via App Store, or download the direct Android APK.',
+          a: 'Launch immediately via the standalone Web App (/web), install on iOS via Apple App Store, or download the direct Android APK right here.',
         },
       ];
 
@@ -118,23 +110,23 @@ export const LandingApp: React.FC = () => {
     <div className="min-h-screen bg-obsidian text-slate-100">
       {/* Header */}
       <header className="sticky top-0 z-30 bg-obsidian/90 backdrop-blur-md border-b border-borderdark/70">
-        <div className="max-w-5xl mx-auto px-5 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
+        <div className="max-w-5xl mx-auto px-5 py-3.5 flex items-center justify-between">
+          <a href="/" className="flex items-center gap-2.5">
             <SafeMaskLogo size={34} />
             <span className="font-extrabold text-lg tracking-tight text-white">SafeMask</span>
-          </div>
-          <div className="flex items-center gap-3">
+          </a>
+          <div className="flex items-center gap-2.5">
             <button
               type="button"
               onClick={() => setLang(isVi ? 'en' : 'vi')}
-              className="px-3 py-1.5 rounded-full bg-surface border border-borderdark text-xs font-bold text-slate-200 inline-flex items-center gap-1.5 hover:border-emeraldbrand"
+              className="px-3 py-1.5 rounded-full bg-surface border border-borderdark text-xs font-bold text-slate-200 inline-flex items-center gap-1.5 hover:border-emeraldbrand transition"
             >
               <Globe className="w-3.5 h-3.5 text-emeraldbrand-bright" />
               {isVi ? 'English' : 'Tiếng Việt'}
             </button>
             <a
-              href="/app.html"
-              className="px-4 py-2 rounded-xl bg-emeraldbrand hover:bg-emeraldbrand-soft text-obsidian font-bold text-xs transition"
+              href="/web/"
+              className="px-4 py-2 rounded-xl bg-emeraldbrand hover:bg-emeraldbrand-soft text-obsidian font-extrabold text-xs transition"
             >
               {isVi ? 'Mở Web App' : 'Launch Web App'}
             </a>
@@ -142,78 +134,167 @@ export const LandingApp: React.FC = () => {
         </div>
       </header>
 
-      <main className="max-w-5xl mx-auto px-5 py-12 space-y-20">
-        {/* Hero Section */}
-        <section className="text-center space-y-6 max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emeraldbrand/15 border border-emeraldbrand/40 text-emeraldbrand-bright text-xs font-bold">
-            <ShieldCheck className="w-4 h-4" />
-            <span>{isVi ? 'Xử lý 100% trên thiết bị • Không cần tài khoản' : 'On-Device Processing • No Account Required'}</span>
-          </div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
-            {isVi ? 'Che dữ liệu. Chia sẻ an toàn.' : 'Hide it. Share it. Stay safe.'}
-          </h1>
-          <p className="text-base text-slate-400 leading-relaxed max-w-2xl mx-auto">
-            {isVi
-              ? 'SafeMask – Privacy Toolkit giúp bạn che ảnh CCCD, số điện thoại, số tài khoản, bảo vệ PDF, xóa GPS ẩn và lọc văn bản nhạy cảm trước khi gửi cho người khác hoặc dán vào AI.'
-              : 'SafeMask – Privacy Toolkit protects sensitive personal data in photos, PDFs, and text locally on your device before sharing on social media or pasting into AI.'}
-          </p>
+      <main className="max-w-5xl mx-auto px-5 py-10 space-y-16">
+        {/* HERO + 3 PROMINENT PLATFORM DOWNLOAD CARDS */}
+        <section className="space-y-8">
+          <div className="relative overflow-hidden rounded-[32px] border border-emeraldbrand/40 bg-graphite p-7 sm:p-10 emerald-glow">
+            <img
+              src="/art/hero-score.webp"
+              alt="SafeMask Privacy Toolkit"
+              className="absolute inset-0 w-full h-full object-cover object-right opacity-55 pointer-events-none"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/85 to-obsidian/30 pointer-events-none" />
 
-          {/* 3 Mandatory Distribution Channels: Web App PWA · App Store iOS · Android APK */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4">
+            <div className="relative z-10 max-w-2xl space-y-5">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emeraldbrand/15 border border-emeraldbrand/45 text-emeraldbrand-bright text-xs font-extrabold">
+                <ShieldCheck className="w-4 h-4" />
+                <span>
+                  {isVi
+                    ? '100% Xử Lý Trên Thiết Bị • Không Cần Tài Khoản'
+                    : 'On-Device Privacy Toolkit • Zero Cloud Uploads'}
+                </span>
+              </div>
+
+              <h1 className="text-4xl sm:text-5xl font-black tracking-tight text-white leading-[1.08]">
+                {isVi ? 'Che dữ liệu.\nChia sẻ an toàn.' : 'Hide it. Share it.\nStay safe.'}
+              </h1>
+
+              <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-xl">
+                {isVi
+                  ? 'Chấm điểm bảo mật ảnh (0–100), che CCCD/SĐT vĩnh viễn, xóa GPS ẩn, bảo vệ PDF và lọc văn bản trước khi gửi cho AI — có mặt trên đủ 3 nền tảng.'
+                  : 'Score your photo privacy (0–100), permanently redact photos & PDFs, strip hidden GPS/EXIF, and sanitize text before ChatGPT — available on Web, iOS & Android.'}
+              </p>
+            </div>
+          </div>
+
+          {/* 3 HIGH-CONTRAST PLATFORM DOWNLOAD CARDS */}
+          <div id="download-channels" className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* 1. WEB APP PWA (/web) */}
             <a
-              href="/app.html"
-              className="py-4 px-5 rounded-2xl bg-emeraldbrand hover:bg-emeraldbrand-soft text-obsidian font-extrabold text-sm flex items-center justify-center gap-2 emerald-glow transition"
+              href="/web/"
+              className="group relative rounded-3xl p-6 bg-gradient-to-b from-emeraldbrand/25 to-surface border-2 border-emeraldbrand emerald-glow flex flex-col justify-between gap-4 hover:-translate-y-0.5 transition"
             >
-              <Globe className="w-4 h-4" />
-              <span>{isVi ? 'Bản Web Dùng Ngay (PWA)' : 'Launch Web App (PWA)'}</span>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="px-2.5 py-1 rounded-full bg-emeraldbrand text-obsidian text-[10px] font-black uppercase tracking-wider">
+                    {isVi ? 'Dùng Ngay • 0MB' : 'Instant • PWA'}
+                  </span>
+                  <Globe className="w-6 h-6 text-emeraldbrand-bright" />
+                </div>
+                <h2 className="text-xl font-extrabold text-white">
+                  {isVi ? 'Web App (/web)' : 'Web App (/web)'}
+                </h2>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  {isVi
+                    ? 'Mở ngay trên Safari/Chrome, hỗ trợ cài ra màn hình chính chạy độc lập như app thật.'
+                    : 'Run instantly in Safari or Chrome. Install to Home Screen as a standalone offline PWA.'}
+                </p>
+              </div>
+              <div className="w-full py-3 rounded-2xl bg-emeraldbrand group-hover:bg-emeraldbrand-soft text-obsidian font-extrabold text-sm flex items-center justify-center gap-2 transition">
+                <span>{isVi ? 'Mở Bản Web Ngay' : 'Launch Web App'}</span>
+                <ArrowRight className="w-4 h-4" />
+              </div>
             </a>
+
+            {/* 2. APPLE APP STORE (iOS) */}
             <a
-              href="#download-channels"
-              className="py-4 px-5 rounded-2xl bg-surface border border-borderdark hover:border-emeraldbrand/60 text-white font-bold text-sm flex items-center justify-center gap-2 transition"
+              href="#ios-release"
+              className="group relative rounded-3xl p-6 bg-surface border border-borderdark hover:border-emeraldbrand/60 flex flex-col justify-between gap-4 hover:-translate-y-0.5 transition"
             >
-              <Smartphone className="w-4 h-4 text-emeraldbrand-bright" />
-              <span>{isVi ? 'App Store (iOS)' : 'App Store (iOS)'}</span>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="px-2.5 py-1 rounded-full bg-graphite border border-borderdark text-slate-300 text-[10px] font-extrabold uppercase tracking-wider">
+                    iPhone & iPad
+                  </span>
+                  <Smartphone className="w-6 h-6 text-emeraldbrand-bright" />
+                </div>
+                <h2 className="text-xl font-extrabold text-white">Apple App Store</h2>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  {isVi
+                    ? 'Ứng dụng iOS gốc tối ưu cho iPhone & iPad, hỗ trợ lưu thẳng Thư viện Ảnh & Share Sheet.'
+                    : 'Native iOS app built for iPhone & iPad with direct Photos saving & iOS Share Sheet.'}
+                </p>
+              </div>
+              <div className="w-full py-3 rounded-2xl bg-elevated border border-borderdark group-hover:border-emeraldbrand text-white font-extrabold text-sm flex items-center justify-center gap-2 transition">
+                <span>{isVi ? 'App Store (Đang phát hành)' : 'App Store (Coming Soon)'}</span>
+              </div>
             </a>
+
+            {/* 3. ANDROID APK DIRECT DOWNLOAD */}
             <a
               href="/downloads/safemask-latest.apk"
               download
-              className="py-4 px-5 rounded-2xl bg-surface border border-borderdark hover:border-emeraldbrand/60 text-white font-bold text-sm flex items-center justify-center gap-2 transition"
+              className="group relative rounded-3xl p-6 bg-surface border border-borderdark hover:border-emeraldbrand/60 flex flex-col justify-between gap-4 hover:-translate-y-0.5 transition"
             >
-              <Download className="w-4 h-4 text-emeraldbrand-bright" />
-              <span>{isVi ? 'Tải File APK (Android)' : 'Download Android APK'}</span>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="px-2.5 py-1 rounded-full bg-emeraldbrand/15 border border-emeraldbrand/40 text-emeraldbrand-bright text-[10px] font-extrabold uppercase tracking-wider">
+                    APK • v1.0.0 • 6.6 MB
+                  </span>
+                  <Download className="w-6 h-6 text-emeraldbrand-bright" />
+                </div>
+                <h2 className="text-xl font-extrabold text-white">
+                  {isVi ? 'File APK Android' : 'Android APK'}
+                </h2>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  {isVi
+                    ? 'Tải trực tiếp file .apk cài đặt ngay cho mọi máy Android, tự động cập nhật bản mới nhất.'
+                    : 'Direct .apk installation for any Android phone — no store wait, auto-built fresh.'}
+                </p>
+              </div>
+              <div className="w-full py-3 rounded-2xl bg-elevated border border-emeraldbrand/50 group-hover:bg-emeraldbrand group-hover:text-obsidian text-emeraldbrand-bright font-extrabold text-sm flex items-center justify-center gap-2 transition">
+                <Download className="w-4 h-4" />
+                <span>{isVi ? 'Tải File APK Trực Tiếp' : 'Download Android APK'}</span>
+              </div>
             </a>
           </div>
         </section>
 
-        {/* Features Grid */}
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {features.map((f) => {
-            const Icon = f.icon;
-            return (
-              <div
-                key={f.title}
-                className="glass-panel rounded-3xl p-6 space-y-3 hover:border-emeraldbrand/50 transition"
+        {/* 6 VISUAL 3D TOOL CARDS */}
+        <section className="space-y-5">
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl font-extrabold text-white">
+              {isVi ? 'Trọn Bộ Công Cụ Bảo Mật Trên Thiết Bị' : 'All-in-One On-Device Privacy Toolkit'}
+            </h2>
+            <a href="/web/" className="text-xs font-bold text-emeraldbrand-bright hover:underline">
+              {isVi ? 'Dùng thử ngay →' : 'Try free now →'}
+            </a>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {visualTools.map((tool) => (
+              <a
+                key={tool.title}
+                href="/web/"
+                className="group relative aspect-[4/3] rounded-3xl overflow-hidden border border-borderdark hover:border-emeraldbrand/60 bg-graphite transition"
               >
-                <div className="w-11 h-11 rounded-2xl bg-emeraldbrand/15 border border-emeraldbrand/30 flex items-center justify-center text-emeraldbrand-bright">
-                  <Icon className="w-5 h-5" />
+                <img
+                  src={tool.art}
+                  alt={tool.title}
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/45 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-4">
+                  <h3 className="text-sm sm:text-base font-extrabold text-white">{tool.title}</h3>
+                  <p className="text-[11px] sm:text-xs text-slate-300 mt-0.5 line-clamp-2">
+                    {tool.desc}
+                  </p>
                 </div>
-                <h2 className="text-lg font-bold text-white">{f.title}</h2>
-                <p className="text-sm text-slate-400 leading-relaxed">{f.desc}</p>
-              </div>
-            );
-          })}
+              </a>
+            ))}
+          </div>
         </section>
 
         {/* Privacy Promise */}
-        <section className="glass-panel rounded-3xl p-8 border-emeraldbrand/40 space-y-4">
+        <section id="ios-release" className="glass-panel rounded-3xl p-7 border-emeraldbrand/40 space-y-4">
           <div className="flex items-center gap-2 text-emeraldbrand-bright font-bold text-sm">
             <Lock className="w-5 h-5" />
-            <span>{isVi ? 'Cam kết quyền riêng tư SafeMask' : 'SafeMask Privacy Promise'}</span>
+            <span>{isVi ? 'Cam Kết Quyền Riêng Tư SafeMask' : 'SafeMask Privacy Promise'}</span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-slate-300">
             <div className="flex items-start gap-2.5">
               <CheckCircle2 className="w-5 h-5 text-emeraldbrand-bright shrink-0" />
-              <span>{isVi ? 'Không tải ảnh, PDF hay văn bản lên server.' : 'Zero cloud uploads of photos, PDFs, or text.'}</span>
+              <span>{isVi ? 'Không tải ảnh, PDF hay văn bản lên máy chủ.' : 'Zero cloud uploads of photos, PDFs, or text.'}</span>
             </div>
             <div className="flex items-start gap-2.5">
               <CheckCircle2 className="w-5 h-5 text-emeraldbrand-bright shrink-0" />
@@ -226,59 +307,10 @@ export const LandingApp: React.FC = () => {
           </div>
         </section>
 
-        {/* Download Channels Detail */}
-        <section id="download-channels" className="space-y-5">
-          <h2 className="text-2xl font-bold text-white text-center">
-            {isVi ? '3 Kênh Cài Đặt Chính Thức' : '3 Official Ways to Use SafeMask'}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-surface border border-emeraldbrand/50 rounded-2xl p-5 space-y-2">
-              <div className="text-xs font-bold text-emeraldbrand-bright uppercase">01 • Web App PWA</div>
-              <h3 className="font-bold text-white">{isVi ? 'Bản Web Dùng Ngay' : 'Instant Standalone PWA'}</h3>
-              <p className="text-xs text-slate-400">
-                {isVi
-                  ? 'Chạy ngay trên Safari/Chrome di động, hỗ trợ Thêm vào Màn hình chính như app gốc.'
-                  : 'Runs directly in Safari/Chrome and installs to your Home Screen as a standalone app.'}
-              </p>
-              <a href="/app.html" className="inline-block pt-2 text-xs font-bold text-emeraldbrand-bright hover:underline">
-                {isVi ? 'Mở ứng dụng ngay →' : 'Open Web App →'}
-              </a>
-            </div>
-            <div className="bg-surface border border-borderdark rounded-2xl p-5 space-y-2">
-              <div className="text-xs font-bold text-slate-400 uppercase">02 • Apple iOS</div>
-              <h3 className="font-bold text-white">App Store (iPhone & iPad)</h3>
-              <p className="text-xs text-slate-400">
-                {isVi
-                  ? 'Đóng gói Capacitor iOS gốc, hỗ trợ Share Sheet, Photo Library và Face ID / Safe Area.'
-                  : 'Native Capacitor iOS build with Share Sheet, Photo Library, and Apple StoreKit ready.'}
-              </p>
-              <span className="inline-block pt-2 text-xs text-amber-300">
-                {isVi ? 'Đang chuẩn bị phát hành App Store' : 'Preparing for App Store Release'}
-              </span>
-            </div>
-            <div className="bg-surface border border-borderdark rounded-2xl p-5 space-y-2">
-              <div className="text-xs font-bold text-slate-400 uppercase">03 • Android Direct</div>
-              <h3 className="font-bold text-white">{isVi ? 'File APK Android Trực Tiếp' : 'Direct Android APK'}</h3>
-              <p className="text-xs text-slate-400">
-                {isVi
-                  ? 'Cài đặt trực tiếp file .apk cho thiết bị Android, không cần chờ xét duyệt Closed Testing.'
-                  : 'Direct .apk installation for Android devices alongside Google Play release.'}
-              </p>
-              <a
-                href="/downloads/safemask-latest.apk"
-                download
-                className="inline-block pt-2 text-xs font-bold text-emeraldbrand-bright hover:underline"
-              >
-                {isVi ? 'Tải file .apk trực tiếp →' : 'Download .apk directly →'}
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* Practical SEO Privacy Guides */}
+        {/* Practical SEO Guides */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-bold text-white">
-            {isVi ? 'Hướng dẫn bảo vệ dữ liệu thực tế' : 'Practical Privacy Guides'}
+          <h2 className="text-2xl font-extrabold text-white">
+            {isVi ? 'Hướng Dẫn Bảo Vệ Dữ Liệu Thực Tế' : 'Practical Privacy Guides'}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {guides.map((g) => (
@@ -296,7 +328,7 @@ export const LandingApp: React.FC = () => {
 
         {/* FAQ */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-bold text-white">FAQ</h2>
+          <h2 className="text-2xl font-extrabold text-white">FAQ</h2>
           <div className="space-y-3">
             {faqs.map((item) => (
               <div key={item.q} className="bg-surface border border-borderdark rounded-2xl p-5 space-y-1.5">
@@ -311,6 +343,8 @@ export const LandingApp: React.FC = () => {
       <footer className="border-t border-borderdark py-8 text-center text-xs text-slate-500 space-y-2">
         <p>SafeMask – Privacy Toolkit • Hide it. Share it. Stay safe.</p>
         <div className="flex items-center justify-center gap-4 text-slate-400">
+          <a href="/web/" className="hover:text-emeraldbrand-bright">Web App</a>
+          <span>•</span>
           <a href="/privacy/" className="hover:text-emeraldbrand-bright">Privacy Policy</a>
           <span>•</span>
           <a href="/terms/" className="hover:text-emeraldbrand-bright">Terms</a>

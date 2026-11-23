@@ -25,7 +25,7 @@ export default defineConfig({
         background_color: '#080A0D',
         display: 'standalone',
         orientation: 'portrait-primary',
-        start_url: '/app.html',
+        start_url: '/web/',
         scope: '/',
         categories: ['utilities', 'productivity', 'security'],
         icons: [
@@ -50,17 +50,8 @@ export default defineConfig({
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,webp,svg,woff2}'],
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
-        navigateFallback: '/index.html',
-        navigateFallbackDenylist: [
-          /^\/landing\.html/,
-          /^\/sitemap\.xml/,
-          /^\/robots\.txt/,
-          /^\/guides\//,
-          /^\/privacy\//,
-          /^\/terms\//,
-          /^\/support\//,
-          /^\/downloads\//,
-        ],
+        navigateFallback: '/web/index.html',
+        navigateFallbackAllowlist: [/^\/web/],
       },
     }),
   ],
@@ -68,7 +59,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
-        app: resolve(__dirname, 'app.html'),
+        web: resolve(__dirname, 'web/index.html'),
         landing: resolve(__dirname, 'landing.html'),
       },
       output: {
