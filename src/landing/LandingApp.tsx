@@ -133,7 +133,7 @@ export const LandingApp: React.FC = () => {
               {isVi ? 'English' : 'Tiếng Việt'}
             </button>
             <a
-              href="/"
+              href="/app.html"
               className="px-4 py-2 rounded-xl bg-emeraldbrand hover:bg-emeraldbrand-soft text-obsidian font-bold text-xs transition"
             >
               {isVi ? 'Mở Web App' : 'Launch Web App'}
@@ -161,7 +161,7 @@ export const LandingApp: React.FC = () => {
           {/* 3 Mandatory Distribution Channels: Web App PWA · App Store iOS · Android APK */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4">
             <a
-              href="/"
+              href="/app.html"
               className="py-4 px-5 rounded-2xl bg-emeraldbrand hover:bg-emeraldbrand-soft text-obsidian font-extrabold text-sm flex items-center justify-center gap-2 emerald-glow transition"
             >
               <Globe className="w-4 h-4" />
@@ -240,7 +240,7 @@ export const LandingApp: React.FC = () => {
                   ? 'Chạy ngay trên Safari/Chrome di động, hỗ trợ Thêm vào Màn hình chính như app gốc.'
                   : 'Runs directly in Safari/Chrome and installs to your Home Screen as a standalone app.'}
               </p>
-              <a href="/" className="inline-block pt-2 text-xs font-bold text-emeraldbrand-bright hover:underline">
+              <a href="/app.html" className="inline-block pt-2 text-xs font-bold text-emeraldbrand-bright hover:underline">
                 {isVi ? 'Mở ứng dụng ngay →' : 'Open Web App →'}
               </a>
             </div>

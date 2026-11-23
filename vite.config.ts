@@ -25,7 +25,7 @@ export default defineConfig({
         background_color: '#080A0D',
         display: 'standalone',
         orientation: 'portrait-primary',
-        start_url: '/',
+        start_url: '/app.html',
         scope: '/',
         categories: ['utilities', 'productivity', 'security'],
         icons: [
@@ -68,6 +68,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
+        app: resolve(__dirname, 'app.html'),
         landing: resolve(__dirname, 'landing.html'),
       },
       output: {

@@ -153,7 +153,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ entitlement, onN
           <ChevronRight className="w-4 h-4 text-slate-500" />
         </button>
         <a
-          href={`/landing.html?lang=${lang}`}
+          href={`https://safemask.tuandigital.vn/?lang=${lang}`}
           target="_blank"
           rel="noopener noreferrer"
           className="w-full px-4 py-3.5 flex items-center justify-between text-slate-200 hover:text-white"
