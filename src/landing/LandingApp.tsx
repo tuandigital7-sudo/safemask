@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import {
   ArrowRight,
+  Check,
   CheckCircle2,
   Download,
   Globe,
   Lock,
   ShieldCheck,
-  Smartphone,
+  Zap,
 } from 'lucide-react';
 import { SafeMaskLogo } from '../components/Logo';
 import type { Language } from '../types';
@@ -20,6 +21,18 @@ function initialLang(): Language {
   }
   return 'en';
 }
+
+const AppleMark: React.FC<{ className?: string }> = ({ className = 'w-6 h-6' }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.33c.64-.78 1.08-1.86.96-2.94-.93.04-2.06.62-2.72 1.4-.58.68-1.1 1.79-.96 2.84 1.04.08 2.08-.52 2.72-1.3z" />
+  </svg>
+);
+
+const AndroidMark: React.FC<{ className?: string }> = ({ className = 'w-6 h-6' }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+    <path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24a11.463 11.463 0 00-8.94 0L5.65 5.67c-.19-.28-.54-.37-.83-.22-.3.16-.42.54-.26.85l1.84 3.18C4.07 10.97 2.5 13.43 2.5 16.3h19c0-2.87-1.57-5.33-3.9-6.82zM8.5 13.8a1 1 0 110-2 1 1 0 010 2zm7 0a1 1 0 110-2 1 1 0 010 2z" />
+  </svg>
+);
 
 export const LandingApp: React.FC = () => {
   const [lang, setLang] = useState<Language>(initialLang);
@@ -88,7 +101,7 @@ export const LandingApp: React.FC = () => {
         },
         {
           q: 'Tôi có thể dùng SafeMask trên nền tảng nào?',
-          a: 'Dùng ngay Web App tại safemask.tuandigital.vn/web, cài trên iPhone/iPad qua App Store, hoặc tải trực tiếp file Android APK ngay trên trang chủ này.',
+          a: 'Dùng ngay Web App tại safemask.tuandigital.vn/web, cài trên iPhone/iPad qua Apple App Store, hoặc tải trực tiếp file Android APK ngay trên trang chủ.',
         },
       ]
     : [
@@ -108,12 +121,19 @@ export const LandingApp: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-obsidian text-slate-100">
-      {/* Header */}
-      <header className="sticky top-0 z-30 bg-obsidian/90 backdrop-blur-md border-b border-borderdark/70">
-        <div className="max-w-5xl mx-auto px-5 py-3.5 flex items-center justify-between">
+      {/* Sticky Glass Header */}
+      <header className="sticky top-0 z-30 bg-obsidian/90 backdrop-blur-xl border-b border-borderdark/70">
+        <div className="max-w-6xl mx-auto px-5 py-3.5 flex items-center justify-between">
           <a href="/" className="flex items-center gap-2.5">
-            <SafeMaskLogo size={34} />
-            <span className="font-extrabold text-lg tracking-tight text-white">SafeMask</span>
+            <SafeMaskLogo size={36} />
+            <div>
+              <div className="font-black text-lg tracking-tight text-white leading-none">
+                SafeMask
+              </div>
+              <div className="text-[10px] font-bold text-emeraldbrand-bright tracking-widest uppercase">
+                Privacy Toolkit
+              </div>
+            </div>
           </a>
           <div className="flex items-center gap-2.5">
             <button
@@ -126,7 +146,7 @@ export const LandingApp: React.FC = () => {
             </button>
             <a
               href="/web/"
-              className="px-4 py-2 rounded-xl bg-emeraldbrand hover:bg-emeraldbrand-soft text-obsidian font-extrabold text-xs transition"
+              className="px-4 py-2 rounded-xl bg-emeraldbrand hover:bg-emeraldbrand-soft text-obsidian font-extrabold text-xs transition shadow-emerald"
             >
               {isVi ? 'Mở Web App' : 'Launch Web App'}
             </a>
@@ -134,126 +154,257 @@ export const LandingApp: React.FC = () => {
         </div>
       </header>
 
-      <main className="max-w-5xl mx-auto px-5 py-10 space-y-16">
-        {/* HERO + 3 PROMINENT PLATFORM DOWNLOAD CARDS */}
-        <section className="space-y-8">
-          <div className="relative overflow-hidden rounded-[32px] border border-emeraldbrand/40 bg-graphite p-7 sm:p-10 emerald-glow">
+      <main className="max-w-6xl mx-auto px-5 py-8 sm:py-12 space-y-16">
+        {/* PRO HERO BANNER WITH ALL 3 PLATFORM BUTTONS IMMEDIATELY ABOVE THE FOLD */}
+        <section className="space-y-6">
+          <div className="relative overflow-hidden rounded-[36px] border border-emeraldbrand/45 bg-graphite p-7 sm:p-12 emerald-glow">
             <img
               src="/art/hero-score.webp"
               alt="SafeMask Privacy Toolkit"
-              className="absolute inset-0 w-full h-full object-cover object-right opacity-55 pointer-events-none"
+              className="absolute inset-0 w-full h-full object-cover object-right opacity-60 pointer-events-none"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/85 to-obsidian/30 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/90 to-obsidian/35 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-obsidian/90 via-transparent to-transparent pointer-events-none" />
 
-            <div className="relative z-10 max-w-2xl space-y-5">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emeraldbrand/15 border border-emeraldbrand/45 text-emeraldbrand-bright text-xs font-extrabold">
+            <div className="relative z-10 max-w-3xl space-y-6">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emeraldbrand/15 border border-emeraldbrand/50 text-emeraldbrand-bright text-xs font-extrabold tracking-wide">
                 <ShieldCheck className="w-4 h-4" />
                 <span>
                   {isVi
-                    ? '100% Xử Lý Trên Thiết Bị • Không Cần Tài Khoản'
-                    : 'On-Device Privacy Toolkit • Zero Cloud Uploads'}
+                    ? '100% XỬ LÝ TRÊN THIẾT BỊ • KHÔNG UPLOAD SERVER'
+                    : '100% ON-DEVICE PRIVACY • ZERO CLOUD UPLOADS'}
                 </span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl font-black tracking-tight text-white leading-[1.08]">
+              <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-white leading-[1.05]">
                 {isVi ? 'Che dữ liệu.\nChia sẻ an toàn.' : 'Hide it. Share it.\nStay safe.'}
               </h1>
 
-              <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-xl">
+              <p className="text-sm sm:text-lg text-slate-300 leading-relaxed max-w-xl">
                 {isVi
-                  ? 'Chấm điểm bảo mật ảnh (0–100), che CCCD/SĐT vĩnh viễn, xóa GPS ẩn, bảo vệ PDF và lọc văn bản trước khi gửi cho AI — có mặt trên đủ 3 nền tảng.'
-                  : 'Score your photo privacy (0–100), permanently redact photos & PDFs, strip hidden GPS/EXIF, and sanitize text before ChatGPT — available on Web, iOS & Android.'}
+                  ? 'Chấm điểm bảo mật ảnh (0–100), che CCCD/SĐT vĩnh viễn, xóa GPS ẩn, bảo vệ PDF và lọc văn bản trước khi gửi cho AI.'
+                  : 'Score photo privacy (0–100), permanently redact photos & PDFs, strip hidden GPS/EXIF, and sanitize text before ChatGPT.'}
               </p>
+
+              {/* 3 OFFICIAL PRO PLATFORM BUTTONS RIGHT IN HERO */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                {/* 1. Web App (/web) */}
+                <a
+                  href="/web/"
+                  className="group flex items-center gap-3.5 px-5 py-4 rounded-2xl bg-emeraldbrand hover:bg-emeraldbrand-soft text-obsidian shadow-[0_0_32px_rgba(16,185,129,0.45)] transition active:scale-[0.98]"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-obsidian/15 flex items-center justify-center shrink-0">
+                    <Globe className="w-6 h-6 text-obsidian" />
+                  </div>
+                  <div className="text-left min-w-0">
+                    <div className="text-[10px] font-extrabold uppercase tracking-wider opacity-80">
+                      {isVi ? 'Dùng Ngay • PWA' : 'Instant • PWA'}
+                    </div>
+                    <div className="text-sm font-black leading-tight truncate">
+                      Web App (/web)
+                    </div>
+                  </div>
+                  <ArrowRight className="w-4 h-4 ml-auto shrink-0 group-hover:translate-x-0.5 transition-transform" />
+                </a>
+
+                {/* 2. Apple App Store */}
+                <a
+                  href="#download-channels"
+                  className="group flex items-center gap-3.5 px-5 py-4 rounded-2xl bg-obsidian/90 hover:bg-surface border border-white/25 hover:border-emeraldbrand text-white backdrop-blur-md transition active:scale-[0.98]"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
+                    <AppleMark className="w-6 h-6 text-white" />
+                  </div>
+                  <div className="text-left min-w-0">
+                    <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                      {isVi ? 'iPhone & iPad' : 'Download on the'}
+                    </div>
+                    <div className="text-sm font-black leading-tight truncate">
+                      App Store
+                    </div>
+                  </div>
+                </a>
+
+                {/* 3. Android APK Direct */}
+                <a
+                  href="/downloads/safemask-latest.apk"
+                  download
+                  className="group flex items-center gap-3.5 px-5 py-4 rounded-2xl bg-obsidian/90 hover:bg-surface border border-emeraldbrand/55 hover:border-emeraldbrand-bright text-white backdrop-blur-md transition active:scale-[0.98]"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-emeraldbrand/20 flex items-center justify-center shrink-0">
+                    <AndroidMark className="w-6 h-6 text-emeraldbrand-bright" />
+                  </div>
+                  <div className="text-left min-w-0">
+                    <div className="text-[10px] font-bold uppercase tracking-wider text-emeraldbrand-soft">
+                      APK • v1.0.0 • 6.6 MB
+                    </div>
+                    <div className="text-sm font-black leading-tight truncate">
+                      {isVi ? 'Tải Android APK' : 'Android APK'}
+                    </div>
+                  </div>
+                  <Download className="w-4 h-4 ml-auto text-emeraldbrand-bright shrink-0" />
+                </a>
+              </div>
             </div>
           </div>
 
-          {/* 3 HIGH-CONTRAST PLATFORM DOWNLOAD CARDS */}
-          <div id="download-channels" className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* 1. WEB APP PWA (/web) */}
-            <a
-              href="/web/"
-              className="group relative rounded-3xl p-6 bg-gradient-to-b from-emeraldbrand/25 to-surface border-2 border-emeraldbrand emerald-glow flex flex-col justify-between gap-4 hover:-translate-y-0.5 transition"
-            >
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <span className="px-2.5 py-1 rounded-full bg-emeraldbrand text-obsidian text-[10px] font-black uppercase tracking-wider">
-                    {isVi ? 'Dùng Ngay • 0MB' : 'Instant • PWA'}
-                  </span>
-                  <Globe className="w-6 h-6 text-emeraldbrand-bright" />
-                </div>
-                <h2 className="text-xl font-extrabold text-white">
-                  {isVi ? 'Web App (/web)' : 'Web App (/web)'}
-                </h2>
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  {isVi
-                    ? 'Mở ngay trên Safari/Chrome, hỗ trợ cài ra màn hình chính chạy độc lập như app thật.'
-                    : 'Run instantly in Safari or Chrome. Install to Home Screen as a standalone offline PWA.'}
-                </p>
+          {/* TRUST METRICS BAR */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+            {[
+              { k: '100%', v: isVi ? 'Xử lý trên máy' : 'On-Device Core' },
+              { k: '0', v: isVi ? 'Upload máy chủ' : 'Server Uploads' },
+              { k: '0–100', v: isVi ? 'Chấm điểm ảnh' : 'Privacy Score' },
+              { k: '3', v: isVi ? 'Web · iOS · APK' : 'Web · iOS · APK' },
+            ].map((stat) => (
+              <div
+                key={stat.k}
+                className="rounded-2xl bg-surface/80 border border-borderdark py-3.5 px-3"
+              >
+                <div className="text-xl font-black text-emeraldbrand-bright">{stat.k}</div>
+                <div className="text-xs text-slate-400 font-semibold mt-0.5">{stat.v}</div>
               </div>
-              <div className="w-full py-3 rounded-2xl bg-emeraldbrand group-hover:bg-emeraldbrand-soft text-obsidian font-extrabold text-sm flex items-center justify-center gap-2 transition">
-                <span>{isVi ? 'Mở Bản Web Ngay' : 'Launch Web App'}</span>
+            ))}
+          </div>
+        </section>
+
+        {/* 3 PRO PLATFORM CARDS SECTION */}
+        <section id="download-channels" className="space-y-6">
+          <div className="text-center space-y-2">
+            <div className="inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-widest text-emeraldbrand-bright">
+              <Zap className="w-3.5 h-3.5" />
+              <span>{isVi ? 'ĐA NỀN TẢNG ĐỒNG BỘ' : 'AVAILABLE EVERYWHERE'}</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-black text-white">
+              {isVi ? 'Chọn Nền Tảng Cài Đặt SafeMask' : 'Choose Your Platform'}
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {/* CARD 1: WEB APP PWA */}
+            <div className="relative rounded-3xl p-6 bg-gradient-to-b from-emeraldbrand/20 via-surface to-surface border-2 border-emeraldbrand emerald-glow flex flex-col justify-between gap-6">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="w-12 h-12 rounded-2xl bg-emeraldbrand/20 border border-emeraldbrand/50 flex items-center justify-center">
+                    <Globe className="w-6 h-6 text-emeraldbrand-bright" />
+                  </div>
+                  <span className="px-3 py-1 rounded-full bg-emeraldbrand text-obsidian text-[11px] font-black uppercase">
+                    {isVi ? 'Khuyên Dùng' : 'Instant Live'}
+                  </span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-black text-white">Web App (PWA)</h3>
+                  <p className="text-xs text-slate-300 mt-1">
+                    https://safemask.tuandigital.vn/web
+                  </p>
+                </div>
+                <ul className="space-y-2 text-xs text-slate-300">
+                  <li className="flex items-center gap-2">
+                    <Check className="w-4 h-4 text-emeraldbrand-bright shrink-0" />
+                    <span>{isVi ? 'Chạy ngay không cần tải về' : 'Zero install — runs instantly in browser'}</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="w-4 h-4 text-emeraldbrand-bright shrink-0" />
+                    <span>{isVi ? 'Thêm ra Màn hình chính chạy offline' : 'Add to Home Screen standalone PWA'}</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="w-4 h-4 text-emeraldbrand-bright shrink-0" />
+                    <span>{isVi ? 'Đủ 100% tính năng Ảnh, PDF, OCR, AI' : 'Full Image, PDF, OCR & AI Privacy suite'}</span>
+                  </li>
+                </ul>
+              </div>
+              <a
+                href="/web/"
+                className="w-full py-3.5 rounded-2xl bg-emeraldbrand hover:bg-emeraldbrand-soft text-obsidian font-extrabold text-sm flex items-center justify-center gap-2 transition"
+              >
+                <span>{isVi ? 'Mở Web App (/web)' : 'Launch Web App (/web)'}</span>
                 <ArrowRight className="w-4 h-4" />
-              </div>
-            </a>
+              </a>
+            </div>
 
-            {/* 2. APPLE APP STORE (iOS) */}
-            <a
-              href="#ios-release"
-              className="group relative rounded-3xl p-6 bg-surface border border-borderdark hover:border-emeraldbrand/60 flex flex-col justify-between gap-4 hover:-translate-y-0.5 transition"
-            >
-              <div className="space-y-2">
+            {/* CARD 2: APPLE APP STORE */}
+            <div className="relative rounded-3xl p-6 bg-surface border border-borderdark hover:border-white/30 flex flex-col justify-between gap-6 transition">
+              <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="px-2.5 py-1 rounded-full bg-graphite border border-borderdark text-slate-300 text-[10px] font-extrabold uppercase tracking-wider">
-                    iPhone & iPad
+                  <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/15 flex items-center justify-center">
+                    <AppleMark className="w-6 h-6 text-white" />
+                  </div>
+                  <span className="px-3 py-1 rounded-full bg-graphite border border-borderdark text-slate-300 text-[11px] font-bold uppercase">
+                    iOS 15+
                   </span>
-                  <Smartphone className="w-6 h-6 text-emeraldbrand-bright" />
                 </div>
-                <h2 className="text-xl font-extrabold text-white">Apple App Store</h2>
-                <p className="text-xs text-slate-400 leading-relaxed">
-                  {isVi
-                    ? 'Ứng dụng iOS gốc tối ưu cho iPhone & iPad, hỗ trợ lưu thẳng Thư viện Ảnh & Share Sheet.'
-                    : 'Native iOS app built for iPhone & iPad with direct Photos saving & iOS Share Sheet.'}
-                </p>
+                <div>
+                  <h3 className="text-xl font-black text-white">Apple App Store</h3>
+                  <p className="text-xs text-slate-400 mt-1">iPhone & iPad Native App</p>
+                </div>
+                <ul className="space-y-2 text-xs text-slate-300">
+                  <li className="flex items-center gap-2">
+                    <Check className="w-4 h-4 text-emeraldbrand-bright shrink-0" />
+                    <span>{isVi ? 'Tối ưu 1 màn hình cho iPhone' : 'Native iOS 1-screen fluid experience'}</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="w-4 h-4 text-emeraldbrand-bright shrink-0" />
+                    <span>{isVi ? 'Lưu thẳng Thư viện Ảnh & Share Sheet' : 'Direct iOS Photos Save & Share Sheet'}</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="w-4 h-4 text-emeraldbrand-bright shrink-0" />
+                    <span>{isVi ? 'Tích hợp Apple StoreKit Pro' : 'Apple StoreKit Pro ready'}</span>
+                  </li>
+                </ul>
               </div>
-              <div className="w-full py-3 rounded-2xl bg-elevated border border-borderdark group-hover:border-emeraldbrand text-white font-extrabold text-sm flex items-center justify-center gap-2 transition">
-                <span>{isVi ? 'App Store (Đang phát hành)' : 'App Store (Coming Soon)'}</span>
+              <div className="w-full py-3.5 rounded-2xl bg-elevated border border-white/15 text-slate-200 font-bold text-sm flex items-center justify-center gap-2">
+                <AppleMark className="w-4 h-4" />
+                <span>{isVi ? 'App Store • Chuẩn Bị Ra Mắt' : 'App Store • Releasing Soon'}</span>
               </div>
-            </a>
+            </div>
 
-            {/* 3. ANDROID APK DIRECT DOWNLOAD */}
-            <a
-              href="/downloads/safemask-latest.apk"
-              download
-              className="group relative rounded-3xl p-6 bg-surface border border-borderdark hover:border-emeraldbrand/60 flex flex-col justify-between gap-4 hover:-translate-y-0.5 transition"
-            >
-              <div className="space-y-2">
+            {/* CARD 3: ANDROID APK */}
+            <div className="relative rounded-3xl p-6 bg-surface border border-emeraldbrand/40 hover:border-emeraldbrand flex flex-col justify-between gap-6 transition">
+              <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="px-2.5 py-1 rounded-full bg-emeraldbrand/15 border border-emeraldbrand/40 text-emeraldbrand-bright text-[10px] font-extrabold uppercase tracking-wider">
-                    APK • v1.0.0 • 6.6 MB
+                  <div className="w-12 h-12 rounded-2xl bg-emeraldbrand/15 border border-emeraldbrand/40 flex items-center justify-center">
+                    <AndroidMark className="w-6 h-6 text-emeraldbrand-bright" />
+                  </div>
+                  <span className="px-3 py-1 rounded-full bg-emeraldbrand/15 border border-emeraldbrand/40 text-emeraldbrand-bright text-[11px] font-extrabold uppercase">
+                    v1.0.0 • 6.6 MB
                   </span>
-                  <Download className="w-6 h-6 text-emeraldbrand-bright" />
                 </div>
-                <h2 className="text-xl font-extrabold text-white">
-                  {isVi ? 'File APK Android' : 'Android APK'}
-                </h2>
-                <p className="text-xs text-slate-400 leading-relaxed">
-                  {isVi
-                    ? 'Tải trực tiếp file .apk cài đặt ngay cho mọi máy Android, tự động cập nhật bản mới nhất.'
-                    : 'Direct .apk installation for any Android phone — no store wait, auto-built fresh.'}
-                </p>
+                <div>
+                  <h3 className="text-xl font-black text-white">Android APK</h3>
+                  <p className="text-xs text-slate-400 mt-1">
+                    {isVi ? 'Cài trực tiếp file .apk chính chủ' : 'Official Direct .apk Package'}
+                  </p>
+                </div>
+                <ul className="space-y-2 text-xs text-slate-300">
+                  <li className="flex items-center gap-2">
+                    <Check className="w-4 h-4 text-emeraldbrand-bright shrink-0" />
+                    <span>{isVi ? 'Tải & cài ngay, không chờ Google Play' : 'Install immediately — zero store delay'}</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="w-4 h-4 text-emeraldbrand-bright shrink-0" />
+                    <span>{isVi ? 'Tự động build sạch từ GitHub Actions' : 'Auto-built cleanly via GitHub Actions'}</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="w-4 h-4 text-emeraldbrand-bright shrink-0" />
+                    <span>{isVi ? 'Hỗ trợ mọi dòng máy Android' : 'Works on all modern Android devices'}</span>
+                  </li>
+                </ul>
               </div>
-              <div className="w-full py-3 rounded-2xl bg-elevated border border-emeraldbrand/50 group-hover:bg-emeraldbrand group-hover:text-obsidian text-emeraldbrand-bright font-extrabold text-sm flex items-center justify-center gap-2 transition">
+              <a
+                href="/downloads/safemask-latest.apk"
+                download
+                className="w-full py-3.5 rounded-2xl bg-elevated hover:bg-emeraldbrand hover:text-obsidian border border-emeraldbrand/60 text-emeraldbrand-bright font-extrabold text-sm flex items-center justify-center gap-2 transition"
+              >
                 <Download className="w-4 h-4" />
-                <span>{isVi ? 'Tải File APK Trực Tiếp' : 'Download Android APK'}</span>
-              </div>
-            </a>
+                <span>{isVi ? 'Tải File APK Ngay' : 'Download Android APK'}</span>
+              </a>
+            </div>
           </div>
         </section>
 
         {/* 6 VISUAL 3D TOOL CARDS */}
         <section className="space-y-5">
           <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-extrabold text-white">
+            <h2 className="text-2xl font-black text-white">
               {isVi ? 'Trọn Bộ Công Cụ Bảo Mật Trên Thiết Bị' : 'All-in-One On-Device Privacy Toolkit'}
             </h2>
             <a href="/web/" className="text-xs font-bold text-emeraldbrand-bright hover:underline">
@@ -286,7 +437,7 @@ export const LandingApp: React.FC = () => {
         </section>
 
         {/* Privacy Promise */}
-        <section id="ios-release" className="glass-panel rounded-3xl p-7 border-emeraldbrand/40 space-y-4">
+        <section className="glass-panel rounded-3xl p-7 border-emeraldbrand/40 space-y-4">
           <div className="flex items-center gap-2 text-emeraldbrand-bright font-bold text-sm">
             <Lock className="w-5 h-5" />
             <span>{isVi ? 'Cam Kết Quyền Riêng Tư SafeMask' : 'SafeMask Privacy Promise'}</span>
@@ -309,7 +460,7 @@ export const LandingApp: React.FC = () => {
 
         {/* Practical SEO Guides */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-extrabold text-white">
+          <h2 className="text-2xl font-black text-white">
             {isVi ? 'Hướng Dẫn Bảo Vệ Dữ Liệu Thực Tế' : 'Practical Privacy Guides'}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -328,7 +479,7 @@ export const LandingApp: React.FC = () => {
 
         {/* FAQ */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-extrabold text-white">FAQ</h2>
+          <h2 className="text-2xl font-black text-white">FAQ</h2>
           <div className="space-y-3">
             {faqs.map((item) => (
               <div key={item.q} className="bg-surface border border-borderdark rounded-2xl p-5 space-y-1.5">
@@ -343,7 +494,9 @@ export const LandingApp: React.FC = () => {
       <footer className="border-t border-borderdark py-8 text-center text-xs text-slate-500 space-y-2">
         <p>SafeMask – Privacy Toolkit • Hide it. Share it. Stay safe.</p>
         <div className="flex items-center justify-center gap-4 text-slate-400">
-          <a href="/web/" className="hover:text-emeraldbrand-bright">Web App</a>
+          <a href="/web/" className="hover:text-emeraldbrand-bright">Web App (/web)</a>
+          <span>•</span>
+          <a href="/downloads/safemask-latest.apk" download className="hover:text-emeraldbrand-bright">Android APK</a>
           <span>•</span>
           <a href="/privacy/" className="hover:text-emeraldbrand-bright">Privacy Policy</a>
           <span>•</span>
