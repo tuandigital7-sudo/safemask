@@ -209,7 +209,9 @@ export const LandingApp: React.FC = () => {
 
                 {/* 2. Apple App Store — Iconic High-Contrast Apple White */}
                 <a
-                  href="#download-channels"
+                  href="https://apps.apple.com/app/id6838570167"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group flex items-center gap-3.5 px-5 py-4 rounded-2xl bg-white hover:bg-slate-100 text-obsidian shadow-[0_0_30px_rgba(255,255,255,0.3)] ring-2 ring-white/80 transition active:scale-[0.98]"
                 >
                   <div className="w-11 h-11 rounded-xl bg-obsidian/10 flex items-center justify-center shrink-0">
@@ -352,10 +354,15 @@ export const LandingApp: React.FC = () => {
                   </li>
                 </ul>
               </div>
-              <div className="w-full py-3.5 rounded-2xl bg-white text-obsidian font-extrabold text-sm flex items-center justify-center gap-2 shadow-[0_0_24px_rgba(255,255,255,0.2)]">
+              <a
+                href="https://apps.apple.com/app/id6838570167"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3.5 rounded-2xl bg-white hover:bg-slate-100 text-obsidian font-extrabold text-sm flex items-center justify-center gap-2 shadow-[0_0_24px_rgba(255,255,255,0.2)] transition"
+              >
                 <AppleMark className="w-4 h-4" />
-                <span>{isVi ? 'App Store • Chuẩn Bị Ra Mắt' : 'App Store • Releasing Soon'}</span>
-              </div>
+                <span>{isVi ? 'Tải trên App Store (iOS)' : 'Download on App Store'}</span>
+              </a>
             </div>
 
             {/* CARD 3: ANDROID APK */}
