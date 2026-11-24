@@ -19,6 +19,13 @@ export interface PricingConfig {
  * Balanced Free + Pro configuration (US / Global Primary Market).
  * Free stays genuinely useful; Pro unlocks clean unbranded exports, unlimited scale & speed.
  */
+/**
+ * Set to `true` in v1.1 once Apple StoreKit 2 / Google Play Billing IAP products
+ * are approved and connected. In v1.0.0 Early Access (`false`), all tools are unlocked
+ * cleanly with zero unconfigured purchase prompts to pass Apple Guideline 2.1 & 3.1.1.
+ */
+export const ENABLE_STORE_PAYWALL = false;
+
 export const PRICING_CONFIG: PricingConfig = {
   currency: 'USD',
   freeLimits: {

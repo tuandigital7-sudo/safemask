@@ -27,6 +27,7 @@ import { PrivacyScoreScreen } from './screens/PrivacyScoreScreen';
 import { PaywallScreen } from './screens/PaywallScreen';
 import { LegalScreen } from './screens/LegalScreen';
 import { billingService } from './services/billing/BillingService';
+import { ENABLE_STORE_PAYWALL } from './config/pricing';
 import { trackEvent } from './services/analytics';
 import { getFavoriteTools, toggleFavoriteTool } from './services/history';
 
@@ -53,7 +54,7 @@ export const App: React.FC = () => {
   const [installPrompt, setInstallPrompt] = useState<BeforeInstallPromptEvent | null>(null);
 
   const [entitlement, setEntitlement] = useState<EntitlementState>({
-    isPro: false,
+    isPro: !ENABLE_STORE_PAYWALL,
     activePlan: null,
     source: 'none',
     isProductionVerified: false,
@@ -61,7 +62,9 @@ export const App: React.FC = () => {
 
   useEffect(() => {
     trackEvent('app_open', { lang, platform: Capacitor.getPlatform() });
-    billingService.getEntitlement().then(setEntitlement);
+    if (ENABLE_STORE_PAYWALL) {
+      billingService.getEntitlement().then(setEntitlement);
+    }
 
     if (Capacitor.isNativePlatform()) {
       StatusBar.setStyle({ style: Style.Dark }).catch(() => {});
@@ -168,18 +171,20 @@ export const App: React.FC = () => {
               PWA
             </button>
           )}
-          <button
-            type="button"
-            onClick={() => openTool('paywall')}
-            className={`px-2.5 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1 transition ${
-              entitlement.isPro
-                ? 'bg-emeraldbrand/20 text-emeraldbrand-bright border border-emeraldbrand/50'
-                : 'bg-surface text-emeraldbrand-bright border border-borderdark hover:border-emeraldbrand/60'
-            }`}
-          >
-            <Crown className="w-3.5 h-3.5" />
-            <span>{t('nav.pro')}</span>
-          </button>
+          {ENABLE_STORE_PAYWALL && (
+            <button
+              type="button"
+              onClick={() => openTool('paywall')}
+              className={`px-2.5 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1 transition ${
+                entitlement.isPro
+                  ? 'bg-emeraldbrand/20 text-emeraldbrand-bright border border-emeraldbrand/50'
+                  : 'bg-surface text-emeraldbrand-bright border border-borderdark hover:border-emeraldbrand/60'
+              }`}
+            >
+              <Crown className="w-3.5 h-3.5" />
+              <span>{t('nav.pro')}</span>
+            </button>
+          )}
           {!isSubScreen && (
             <button
               type="button"

@@ -43,7 +43,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onOpenTool }) => {
 
         <div className="relative z-10 inline-flex items-center gap-1 self-start px-2 py-0.5 rounded-full bg-obsidian/75 backdrop-blur-md border border-emeraldbrand/50 text-[10px] font-extrabold tracking-wider text-emeraldbrand-bright">
           <Crown className="w-3 h-3" />
-          <span>0–100 PRO</span>
+          <span>0–100 SCORE</span>
         </div>
 
         <div className="relative z-10 space-y-1.5 max-w-[66%]">

@@ -49,7 +49,7 @@ export const translations: Record<Language, Record<string, string>> = {
 
     // Photo Privacy Score (Viral Flagship)
     'score.title': 'Photo Privacy Score',
-    'score.proBadge': 'PRO DEEP AUDIT • 0–100 SCORE',
+    'score.proBadge': 'LOCAL PRIVACY AUDIT • 0–100 SCORE',
     'score.heroCta': 'Score My Photo (0–100)',
     'score.emptyTitle': 'How safe is your photo?',
     'score.emptyDesc': 'Scan GPS, EXIF, IDs, phones & bank numbers locally. Get an instant 0–100 Privacy Score and 1-Tap Fix.',
@@ -335,7 +335,7 @@ export const translations: Record<Language, Record<string, string>> = {
 
     // Photo Privacy Score (Viral Flagship)
     'score.title': 'Chấm Điểm Bảo Mật Ảnh',
-    'score.proBadge': 'PRO CHẤM ĐIỂM • THANG 0–100',
+    'score.proBadge': 'CHẤM ĐIỂM BẢO MẬT • THANG 0–100',
     'score.heroCta': 'Chấm điểm ảnh ngay (0–100)',
     'score.emptyTitle': 'Ảnh của bạn an toàn bao nhiêu điểm?',
     'score.emptyDesc': 'Quét GPS, EXIF, CCCD, SĐT & số tài khoản ngay trên máy. Nhận điểm 0–100 và sửa lên 100 điểm chỉ với 1 chạm.',

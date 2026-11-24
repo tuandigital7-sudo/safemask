@@ -16,6 +16,7 @@ import {
   setAnalyticsConsent,
 } from '../services/analytics';
 import { clearAllHistory } from '../services/history';
+import { ENABLE_STORE_PAYWALL } from '../config/pricing';
 
 interface SettingsScreenProps {
   entitlement: EntitlementState;
@@ -44,25 +45,27 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ entitlement, onN
     <div className="space-y-4 pb-6">
       <h2 className="text-lg font-bold text-white">{t('settings.title')}</h2>
 
-      {/* Pro Card */}
-      <button
-        type="button"
-        onClick={() => onNavigate('paywall')}
-        className="w-full flex items-center justify-between p-4 rounded-2xl bg-gradient-to-r from-emeraldbrand/20 to-surface border border-emeraldbrand/50 text-left emerald-glow"
-      >
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-emeraldbrand/20 flex items-center justify-center text-emeraldbrand-bright">
-            <Crown className="w-5 h-5" />
-          </div>
-          <div>
-            <div className="text-sm font-bold text-white">{t('settings.proSection')}</div>
-            <div className="text-xs text-emeraldbrand-soft">
-              {entitlement.isPro ? t('settings.proStatusActive') : t('settings.proStatusFree')}
+      {/* Pro Card (Hidden in v1.0.0 Early Access until StoreKit 2 IAP is enabled in v1.1) */}
+      {ENABLE_STORE_PAYWALL && (
+        <button
+          type="button"
+          onClick={() => onNavigate('paywall')}
+          className="w-full flex items-center justify-between p-4 rounded-2xl bg-gradient-to-r from-emeraldbrand/20 to-surface border border-emeraldbrand/50 text-left emerald-glow"
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-emeraldbrand/20 flex items-center justify-center text-emeraldbrand-bright">
+              <Crown className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="text-sm font-bold text-white">{t('settings.proSection')}</div>
+              <div className="text-xs text-emeraldbrand-soft">
+                {entitlement.isPro ? t('settings.proStatusActive') : t('settings.proStatusFree')}
+              </div>
             </div>
           </div>
-        </div>
-        <ChevronRight className="w-4 h-4 text-emeraldbrand-bright" />
-      </button>
+          <ChevronRight className="w-4 h-4 text-emeraldbrand-bright" />
+        </button>
+      )}
 
       {/* Language Switcher */}
       <div className="bg-surface border border-borderdark rounded-2xl p-4 flex items-center justify-between">
