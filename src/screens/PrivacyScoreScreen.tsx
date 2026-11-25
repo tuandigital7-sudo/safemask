@@ -29,6 +29,7 @@ import {
 } from '../engines/redactionEngine';
 import { trackEvent } from '../services/analytics';
 import { addHistoryEntry } from '../services/history';
+import { ENABLE_STORE_PAYWALL } from '../config/pricing';
 
 interface PrivacyScoreScreenProps {
   isPro: boolean;
@@ -335,7 +336,7 @@ export const PrivacyScoreScreen: React.FC<PrivacyScoreScreenProps> = ({
               <div className="bg-surface border border-borderdark rounded-2xl p-4 space-y-2.5">
                 <div className="text-xs font-bold text-white flex items-center justify-between">
                   <span>{t('score.breakdownTitle')}</span>
-                  {!audit.ocrRan && (
+                  {ENABLE_STORE_PAYWALL && !audit.ocrRan && (
                     <button
                       type="button"
                       onClick={onOpenPaywall}
